@@ -1,0 +1,883 @@
+.site-section {
+  padding: clamp(3.5rem, 7vw, 5.5rem) 10vw;
+  background: var(--color-white);
+}
+
+.site-section--cream {
+  background: var(--color-bg);
+}
+
+.site-section__inner {
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.site-section__inner--narrow {
+  max-width: 46rem;
+}
+
+.site-section__eyebrow,
+.site-section__title,
+.site-section__body,
+.careers__roles,
+.careers__note,
+.careers__intro,
+.careers__content,
+.contact__copy,
+.contact__form,
+.faq__list {
+  transform: translateY(22px);
+  transition: transform 0.45s ease;
+}
+
+.site-section--revealed .site-section__eyebrow,
+.site-section--revealed .site-section__title,
+.site-section--revealed .site-section__body,
+.site-section--revealed .careers__roles,
+.site-section--revealed .careers__note,
+.site-section--revealed .careers__intro,
+.site-section--revealed .careers__content,
+.site-section--revealed .contact__copy,
+.site-section--revealed .contact__form,
+.site-section--revealed .faq__list {
+  transform: translateY(0);
+}
+
+.site-section__eyebrow {
+  margin: 0 0 0.45rem;
+  color: var(--color-domo-brown);
+  letter-spacing: 0.18em;
+}
+
+.site-section__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.65rem);
+  font-weight: 400;
+  line-height: var(--leading-display);
+  color: var(--color-black);
+  margin: 0;
+}
+
+#faq .site-section__eyebrow,
+#partnership .site-section__eyebrow {
+  font-weight: 400;
+  text-align: center;
+}
+
+#faq .site-section__title,
+#partnership .site-section__title {
+  text-align: center;
+}
+
+#partnership .site-section__body,
+#partnership .nav-text {
+  text-align: center;
+}
+
+#partnership .site-section__body {
+  margin-inline: auto;
+}
+
+.partnership__media {
+  margin: 1.75rem auto 0;
+  max-width: 100%;
+  transform: translateY(22px);
+  transition: transform 0.45s ease;
+}
+
+.site-section--revealed .partnership__media {
+  transform: translateY(0);
+}
+
+.partnership__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  object-fit: cover;
+  box-shadow: 0 10px 28px rgba(125, 77, 56, 0.12);
+}
+
+.site-section__body {
+  margin: 1rem 0 0;
+  max-width: 40rem;
+  color: color-mix(in srgb, var(--color-black) 78%, transparent);
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+/* Careers / join the family: left-aligned */
+#careers {
+  background: #261903;
+}
+
+#careers .site-section__inner,
+#careers .site-section__eyebrow,
+#careers .site-section__title,
+#careers .site-section__body,
+#careers .careers__note,
+#careers .nav-text,
+#careers .careers__role-title,
+#careers .careers__role-tags {
+  text-align: left;
+}
+
+#careers .site-section__eyebrow {
+  margin-top: 0;
+  margin-bottom: 0.65rem;
+  color: #edd9be;
+}
+
+#careers .site-section__title {
+  color: #fff6ee;
+}
+
+#careers .site-section__body {
+  color: color-mix(in srgb, #fff6ee 82%, transparent);
+}
+
+.careers__intro {
+  max-width: none;
+}
+
+.careers__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.9fr);
+  gap: clamp(1.25rem, 3vw, 2.25rem);
+  align-items: stretch;
+  margin-top: 0;
+}
+
+.careers__main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.careers__roles {
+  list-style: none;
+  margin: 1.75rem 0 0;
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.careers__media {
+  position: relative;
+  min-height: 0;
+  align-self: stretch;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 246, 238, 0.14);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+}
+
+.careers__image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+#contact {
+  position: relative;
+  isolation: isolate;
+  background-image: url('../assets/contact/contact-bg.png');
+  background-size: cover;
+  background-position: center 38%;
+}
+
+#contact::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: color-mix(in srgb, var(--color-bg) 87%, transparent);
+}
+
+/* Contact / application: left-aligned */
+#contact .site-section__eyebrow,
+#contact .site-section__title,
+#contact .site-section__body,
+#contact .nav-text,
+#contact .contact__copy,
+#contact .contact__details,
+#contact .contact__details li,
+#contact .contact__form,
+#contact .contact__field,
+#contact .contact__field span,
+#contact .contact__thanks {
+  text-align: left;
+}
+
+#careers .events__cta {
+  margin-top: 0;
+}
+
+.careers__role {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.35rem;
+  background: #fff6ee;
+  border-radius: 1rem;
+  border: 1px solid color-mix(in srgb, var(--color-domo-brown) 18%, transparent);
+}
+
+.careers__role-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  margin: 0;
+  color: var(--color-domo-brown);
+}
+
+.careers__role-tags {
+  margin: 0.35rem 0 0;
+  color: color-mix(in srgb, var(--color-domo-brown) 72%, transparent);
+}
+
+@media (max-width: 720px) {
+  .careers__role-tags {
+    white-space: nowrap;
+    font-size: clamp(11px, 3.1vw, 14px);
+    letter-spacing: 0.04em;
+  }
+}
+
+@media (min-width: 721px) and (max-width: 1100px) {
+  .careers__role-tags {
+    white-space: nowrap;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+  }
+
+  .careers__content {
+    grid-template-columns: minmax(0, 1fr) minmax(11rem, 14rem);
+    align-items: start;
+    gap: 1.25rem;
+  }
+
+  .careers__main {
+    display: contents;
+  }
+
+  .careers__intro {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .careers__media {
+    display: block;
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    max-width: 14rem;
+    aspect-ratio: 4 / 3;
+    align-self: start;
+  }
+
+  .careers__image {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .careers__roles {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .careers__note {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+}
+
+.careers__note {
+  margin: 1.5rem 0 0;
+  color: color-mix(in srgb, #fff6ee 76%, transparent);
+  line-height: 1.5;
+}
+
+.careers__note a {
+  color: #edd9be;
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: start;
+}
+
+.contact__love {
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.contact__details {
+  list-style: none;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.contact__details li {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  color: var(--color-black);
+}
+
+.contact__details a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.contact__details a:hover {
+  text-decoration: underline;
+}
+
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: var(--color-white);
+  border-radius: 1.15rem;
+  border: 1px solid color-mix(in srgb, var(--color-domo-brown) 14%, transparent);
+  box-shadow: 0 8px 22px rgba(125, 77, 56, 0.06);
+}
+
+.contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contact__field span {
+  color: var(--color-domo-brown);
+  letter-spacing: 0.1em;
+  font-size: 13px;
+}
+
+.contact__field input,
+.contact__field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--color-domo-brown) 22%, transparent);
+  border-radius: 0.75rem;
+  background: var(--color-bg);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-black);
+}
+
+.contact__field input:focus,
+.contact__field textarea:focus {
+  outline: 2px solid color-mix(in srgb, var(--color-domo-brown) 40%, transparent);
+  outline-offset: 1px;
+}
+
+.contact__thanks {
+  margin: 0.25rem 0 0;
+  color: var(--color-domo-brown);
+}
+
+.faq__list {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid color-mix(in srgb, var(--color-domo-brown) 22%, transparent);
+}
+
+.faq__item {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-domo-brown) 22%, transparent);
+  overflow: visible;
+}
+
+.faq__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  color: var(--color-domo-brown);
+}
+
+.faq__item--open .faq__question {
+  padding-bottom: 0.55rem;
+}
+
+.faq__question-text {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-nav);
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  text-align: left;
+  color: var(--color-domo-brown);
+}
+
+.faq__icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 1.15rem;
+  height: 1.15rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-domo-brown);
+  transition: transform 0.28s ease;
+}
+
+.faq__icon-bar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.75rem;
+  height: 2px;
+  background: currentColor;
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+}
+
+.faq__icon-bar--vertical {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.faq__item--open .faq__icon {
+  transform: rotate(45deg);
+}
+
+.faq__answer {
+  margin: 0;
+  padding: 0 0 1.35rem;
+  font-family: var(--font-nav);
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--color-domo-brown);
+  line-height: 1.55;
+  text-align: left;
+}
+
+.faq__answer p {
+  margin: 0;
+  text-align: left;
+}
+
+.faq__answer p + p {
+  margin-top: 0.75rem;
+}
+
+.site-footer {
+  background: #261903;
+  color: var(--color-white);
+  padding: clamp(2.5rem, 5vw, 3.5rem) 10vw;
+}
+
+.site-footer__brand,
+.site-footer__meta,
+.site-footer__social {
+  transform: translateY(22px);
+  transition: transform 0.45s ease;
+}
+
+.site-footer--revealed .site-footer__brand {
+  transform: translateY(0);
+  transition-delay: 0.08s;
+}
+
+.site-footer--revealed .site-footer__meta,
+.site-footer--revealed .site-footer__social {
+  transform: translateY(0);
+  transition-delay: 0.18s;
+}
+
+.site-footer__inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'brand meta'
+    'brand social';
+  align-items: end;
+  column-gap: 2rem;
+  row-gap: 0.75rem;
+}
+
+.site-footer__brand {
+  grid-area: brand;
+  margin-left: 0;
+  flex-shrink: 0;
+  align-self: end;
+}
+
+.site-footer__logo-link {
+  display: block;
+}
+
+.site-footer__logo {
+  display: block;
+  height: 2.75rem;
+  width: auto;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+}
+
+.site-footer__tag {
+  margin: 0.75rem 0 0;
+  font-family: var(--font-nav);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, var(--color-bg) 88%, #ffffff);
+}
+
+.site-footer__tag--mobile {
+  display: none;
+}
+
+.site-footer__meta {
+  grid-area: meta;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+  max-width: none;
+  margin-left: 0;
+  text-align: right;
+  justify-self: end;
+}
+
+.site-footer__copy,
+.site-footer__legal {
+  margin: 0;
+  width: 100%;
+  font-family: var(--font-nav);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--color-bg) 88%, #ffffff);
+  text-align: right;
+}
+
+.site-footer__meta a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-footer__meta a:hover {
+  text-decoration: underline;
+}
+
+.site-footer__legal {
+  margin-top: 0.35rem;
+  opacity: 0.75;
+  font-size: 13px;
+}
+
+.site-footer__social {
+  grid-area: social;
+  justify-self: end;
+  width: max-content;
+  max-width: 100%;
+}
+
+.site-footer .hero__social {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0;
+  width: max-content;
+  max-width: 100%;
+}
+
+.site-footer .hero__social-btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding: 0.45rem 0.8rem;
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: var(--color-white);
+}
+
+/* Phone-only responsive layout (≤720px). Desktop/tablet keep original layout. */
+@media (max-width: 720px) {
+  .contact {
+    grid-template-columns: 1fr;
+  }
+
+  .contact__details {
+    gap: 0.4rem;
+  }
+
+  .contact__details li {
+    gap: 0.55rem;
+  }
+
+  .careers__content {
+    grid-template-columns: 1fr;
+  }
+
+  .careers__media {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  .careers__image {
+    position: absolute;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .about {
+    overflow-x: clip;
+    width: 100%;
+  }
+
+  .about .site-section {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .about .site-section__inner,
+  .about .site-section__inner--narrow {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .about .site-section__eyebrow {
+    white-space: nowrap;
+  }
+
+  .about .site-section__title {
+    white-space: nowrap;
+    overflow-wrap: normal;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: clamp(1.15rem, 5.4vw, 1.75rem);
+  }
+
+  .about #contact .site-section__title {
+    white-space: normal;
+    font-size: clamp(1.15rem, 5vw, 1.45rem);
+    line-height: 1.2;
+  }
+
+  .about .site-section__body.nav-text--sentence {
+    max-width: 100%;
+  }
+
+  .about #contact .site-section__body.nav-text--sentence {
+    white-space: nowrap;
+    font-size: clamp(0.85rem, 3.6vw, 1rem);
+  }
+
+  .about #partnership .site-section__body,
+  .about #careers .site-section__body {
+    white-space: normal;
+    font-size: inherit;
+  }
+
+  .about #careers .careers__content,
+  .about #careers .careers__main,
+  .about #careers .careers__roles,
+  .about #careers .careers__media {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .about #contact .contact,
+  .about #contact .contact__copy,
+  .about #contact .contact__form {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .site-footer__inner {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'meta brand'
+      'social social';
+    align-items: start;
+    column-gap: 1rem;
+    row-gap: 1rem;
+  }
+
+  .site-footer__brand {
+    order: unset;
+    margin-left: 0;
+    justify-self: end;
+    align-self: start;
+  }
+
+  .site-footer__tag--desktop {
+    display: none;
+  }
+
+  .site-footer__tag--mobile {
+    display: block;
+    margin: 0 0 0.45rem;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+  }
+
+  .site-footer__meta {
+    order: unset;
+    flex: unset;
+    min-width: 0;
+    width: auto;
+    align-items: flex-start;
+    gap: 0.2rem;
+    margin-left: 0;
+    text-align: left;
+    justify-self: start;
+  }
+
+  .site-footer__copy,
+  .site-footer__legal {
+    width: auto;
+    line-height: 1.35;
+    letter-spacing: normal;
+    text-align: left;
+  }
+
+  .site-footer__legal {
+    margin-top: 0.45rem;
+  }
+
+  .site-footer__social {
+    width: 100%;
+    max-width: none;
+    justify-self: stretch;
+  }
+
+  .site-footer .hero__social {
+    flex-wrap: nowrap;
+    justify-content: stretch;
+    gap: 0.45rem;
+    margin-top: 0;
+    width: 100%;
+    max-width: none;
+  }
+
+  .site-footer .hero__social-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.4rem 0.3rem;
+    font-size: 12px;
+    gap: 0.3rem;
+    letter-spacing: normal;
+  }
+
+  .site-footer .hero__social-btn span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .site-footer .hero__social-btn svg {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-section {
+    padding: 3rem 1.25rem;
+  }
+
+  .site-section__title {
+    overflow-wrap: anywhere;
+  }
+
+  .about .site-section__title {
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .careers__role {
+    align-items: stretch;
+    padding: 1.1rem;
+  }
+
+  .careers__role .events__cta {
+    width: 100%;
+  }
+
+  .contact__form {
+    padding: 1.25rem;
+  }
+
+  .site-footer {
+    padding-inline: 1.25rem;
+  }
+
+  .site-footer__logo {
+    height: 2.25rem;
+  }
+
+  .site-footer .hero__social-btn {
+    padding: 0.4rem 0.25rem;
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-section__eyebrow,
+  .site-section__title,
+  .site-section__body,
+  .careers__roles,
+  .careers__note,
+  .careers__intro,
+  .careers__content,
+  .contact__copy,
+  .contact__form,
+  .faq__list,
+  .partnership__media,
+  .site-footer__brand,
+  .site-footer__meta,
+  .site-footer__social {
+    transform: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,361 @@
+import { useEffect, useState, type ReactNode } from 'react'
+import { Link } from 'react-router-dom'
+import eventsImage from '../assets/events/events-promotions.png'
+import summerRefreshersImage from '../assets/events/summer-refreshers.png'
+import grandOpeningImage from '../assets/events/grand-opening.png'
+import loyaltyProgramImage from '../assets/events/loyalty-program.png'
+import domoHolding from '../assets/events/domo-holding.png'
+import { useScrollReveal } from '../hooks/useScrollReveal'
+import '../styles/events.css'
+
+type SlideMedia =
+  | { type: 'image'; src: string }
+  | { type: 'color'; color: string }
+
+type PromotionSlide = {
+  id: string
+  media: SlideMedia
+  label: string
+  title: string
+  description: ReactNode
+  ctaLabel?: string
+  ctaTo?: string
+  ctaExternal?: boolean
+  footnote?: string
+  brightenImage?: boolean
+  cardOverlay?: boolean
+}
+
+type CarouselDirection = 'next' | 'prev'
+
+type CarouselTransition = {
+  from: number
+  to: number
+  direction: CarouselDirection
+}
+
+const promotionSlides: PromotionSlide[] = [
+  {
+    id: 'matcha-series',
+    media: { type: 'image', src: eventsImage },
+    label: 'Promotion',
+    title: 'Matcha Series',
+    description:
+      'Premium matcha in two delicious flavors: blended fresh strawberries or warm cinnamon with notes of spice.',
+    ctaLabel: 'View Menu',
+    ctaTo: '/menu',
+  },
+  {
+    id: 'summer-refreshers',
+    media: { type: 'image', src: summerRefreshersImage },
+    label: 'Promotion',
+    title: 'Summer Refreshers',
+    description:
+      'Three fruity, juicy refreshments - just in time for summer. Enjoy our mengo lemonade, strawberry lime, and pineapple watermelon refreshers today in store!',
+    ctaLabel: 'View Menu',
+    ctaTo: '/menu',
+  },
+  {
+    id: 'loyalty-program',
+    media: { type: 'image', src: loyaltyProgramImage },
+    label: 'Promotion',
+    title: 'Domo Cafe Loyalty Program',
+    description: (
+      <>
+        Sign up once and claim a <strong>Buy One Get One Free</strong> drink next
+        time you visit.
+      </>
+    ),
+    ctaLabel: 'Join Rewards',
+    ctaTo: '/rewards',
+  },
+  {
+    id: 'grand-opening',
+    media: { type: 'image', src: grandOpeningImage },
+    label: 'Event',
+    title: 'Grand Opening',
+    description:
+      "Come to Domo Cafe's grand opening! We open at 10am on June 13th. First 100 visitors will get an exclusive Domo jersey. Domo can't wait to see you!",
+    footnote: '*In-store limited time only.*',
+    brightenImage: true,
+    cardOverlay: true,
+  },
+]
+
+function getDirection(from: number, to: number, count: number): CarouselDirection {
+  if (from === count - 1 && to === 0) return 'next'
+  if (from === 0 && to === count - 1) return 'prev'
+  return to > from ? 'next' : 'prev'
+}
+
+function CarouselChevron({ direction }: { direction: 'left' | 'right' }) {
+  return (
+    <svg
+      className="events__carousel-icon"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d={direction === 'left' ? 'M14 6L8 12L14 18' : 'M10 6L16 12L10 18'}
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+type PromotionCardProps = {
+  slide: PromotionSlide
+  imageZoomed: boolean
+  onImageEnter: () => void
+  onImageLeave: () => void
+}
+
+function PromotionCard({
+  slide,
+  imageZoomed,
+  onImageEnter,
+  onImageLeave,
+}: PromotionCardProps) {
+  const hasImage = slide.media.type === 'image'
+
+  return (
+    <article
+      className={`events__card${imageZoomed ? ' events__card--image-zoomed' : ''}`}
+      onMouseLeave={onImageLeave}
+    >
+      <div
+        className="events__media"
+        onMouseEnter={hasImage ? onImageEnter : undefined}
+      >
+        {slide.media.type === 'image' ? (
+          <img
+            src={slide.media.src}
+            alt=""
+            className={`events__image${slide.brightenImage ? ' events__image--bright' : ''}`}
+          />
+        ) : (
+          <div
+            className="events__color-block"
+            style={{ backgroundColor: slide.media.color }}
+            aria-hidden="true"
+          />
+        )}
+      </div>
+
+      <div className="events__content">
+        <div className="events__card-copy">
+          <div className="events__card-heading">
+            <p className="events__label nav-text">{slide.label}</p>
+            <span className="events__label-underline" aria-hidden="true" />
+            <h3 className="events__card-title">{slide.title}</h3>
+          </div>
+
+          <p className="events__description nav-text nav-text--sentence">
+            {slide.description}
+          </p>
+
+          {slide.footnote ? (
+            <p className="events__footnote nav-text">{slide.footnote}</p>
+          ) : slide.ctaLabel && slide.ctaTo ? (
+            slide.ctaExternal ? (
+              <a
+                href={slide.ctaTo}
+                className="events__cta"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="events__cta-label">{slide.ctaLabel}</span>
+                <span className="events__cta-arrow" aria-hidden="true">→</span>
+              </a>
+            ) : (
+              <Link to={slide.ctaTo} className="events__cta">
+                <span className="events__cta-label">{slide.ctaLabel}</span>
+                <span className="events__cta-arrow" aria-hidden="true">→</span>
+              </Link>
+            )
+          ) : null}
+        </div>
+      </div>
+
+      {slide.cardOverlay && (
+        <span className="events__card-overlay" aria-hidden="true" />
+      )}
+    </article>
+  )
+}
+
+export function EventsPromotions() {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [imageZoomed, setImageZoomed] = useState(false)
+  const [transition, setTransition] = useState<CarouselTransition | null>(null)
+
+  const slideCount = promotionSlides.length
+  const isAnimating = transition !== null
+  const { ref, isVisible } = useScrollReveal<HTMLElement>({
+    threshold: [0, 0.15, 0.3, 0.45],
+    rootMargin: '0px 0px -40% 0px',
+    delayMs: 250,
+    enterRatio: 0.22,
+    enterViewportLine: 0.38,
+    once: false,
+  })
+
+  useEffect(() => {
+    setImageZoomed(false)
+  }, [activeIndex])
+
+  const startTransition = (toIndex: number, direction?: CarouselDirection) => {
+    if (isAnimating || toIndex === activeIndex) return
+
+    setImageZoomed(false)
+    setTransition({
+      from: activeIndex,
+      to: toIndex,
+      direction: direction ?? getDirection(activeIndex, toIndex, slideCount),
+    })
+  }
+
+  const finishTransition = () => {
+    if (!transition) return
+
+    setActiveIndex(transition.to)
+    setTransition(null)
+  }
+
+  const goToPrevious = () => {
+    startTransition((activeIndex - 1 + slideCount) % slideCount, 'prev')
+  }
+
+  const goToNext = () => {
+    startTransition((activeIndex + 1) % slideCount, 'next')
+  }
+
+  const getSlideClassName = (index: number) => {
+    const classes = ['events__carousel-slide']
+
+    if (!transition) {
+      if (index === activeIndex) classes.push('events__carousel-slide--active')
+      return classes.join(' ')
+    }
+
+    if (index === transition.from) {
+      classes.push(`events__carousel-slide--exit-${transition.direction}`)
+    }
+
+    if (index === transition.to) {
+      classes.push(`events__carousel-slide--enter-${transition.direction}`)
+    }
+
+    return classes.join(' ')
+  }
+
+  const isSlideVisible = (index: number) => {
+    if (!transition) return index === activeIndex
+    return index === transition.from || index === transition.to
+  }
+
+  return (
+    <section
+      id="events"
+      ref={ref}
+      className={`events${isVisible ? ' events--revealed' : ''}`}
+      aria-labelledby="events-heading"
+    >
+      <div className="events__inner">
+        <h2 id="events-heading" className="events__heading">
+          Events &amp; Promotions
+          <span className="events__underline" aria-hidden="true" />
+        </h2>
+
+        <div className="events__carousel">
+          <div className="events__card-wrap">
+            <div
+              className={`events__carousel-viewport${
+                isAnimating ? ' events__carousel-viewport--animating' : ''
+              }`}
+              aria-live="polite"
+            >
+              {promotionSlides.map((slide, index) => {
+                if (!isSlideVisible(index)) return null
+
+                return (
+                  <div
+                    key={slide.id}
+                    className={getSlideClassName(index)}
+                    aria-hidden={!transition && index !== activeIndex}
+                    onAnimationEnd={(event) => {
+                      if (
+                        transition &&
+                        index === transition.to &&
+                        event.animationName.startsWith('carousel-enter')
+                      ) {
+                        finishTransition()
+                      }
+                    }}
+                  >
+                    <PromotionCard
+                      slide={slide}
+                      imageZoomed={imageZoomed && index === activeIndex && !isAnimating}
+                      onImageEnter={() => setImageZoomed(true)}
+                      onImageLeave={() => setImageZoomed(false)}
+                    />
+                  </div>
+                )
+              })}
+            </div>
+
+            <img
+              src={domoHolding}
+              alt=""
+              className="events__mascot"
+              aria-hidden="true"
+            />
+          </div>
+
+          <div className="events__carousel-nav">
+            <button
+              type="button"
+              className="events__carousel-btn"
+              onClick={goToPrevious}
+              aria-label="Previous promotion"
+              disabled={isAnimating}
+            >
+              <CarouselChevron direction="left" />
+            </button>
+
+            <div className="events__carousel-dots" role="tablist" aria-label="Promotion slides">
+              {promotionSlides.map((slide, index) => (
+                <button
+                  key={slide.id}
+                  type="button"
+                  role="tab"
+                  className={`events__carousel-dot${
+                    index === activeIndex ? ' events__carousel-dot--active' : ''
+                  }`}
+                  onClick={() => startTransition(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                  aria-selected={index === activeIndex}
+                  disabled={isAnimating}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              className="events__carousel-btn"
+              onClick={goToNext}
+              aria-label="Next promotion"
+              disabled={isAnimating}
+            >
+              <CarouselChevron direction="right" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

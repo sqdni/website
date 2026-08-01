@@ -1,0 +1,379 @@
+.menu-page {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.menu-page__hero {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  padding: calc(5.5rem + clamp(3rem, 6vw, 4.5rem)) 10vw clamp(4.5rem, 9vw, 7rem);
+  text-align: center;
+  background:
+    linear-gradient(rgba(18, 8, 4, 0.74), rgba(18, 8, 4, 0.74)),
+    url('../assets/menu/menu-hero-bg.png') center / cover no-repeat;
+  transform: translateY(22px);
+  transition: transform 0.45s ease;
+}
+
+.menu-page--revealed .menu-page__hero {
+  transform: translateY(0);
+}
+
+.menu-page__hero-inner {
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.menu-page__eyebrow {
+  margin: 0 0 0.5rem;
+  color: #fff6ee;
+  letter-spacing: 0.18em;
+  text-align: center;
+  font-weight: 400;
+}
+
+.menu-page__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 400;
+  line-height: var(--leading-display);
+  color: #fff6ee;
+  margin: 0;
+  text-align: center;
+}
+
+.menu-page__intro {
+  margin: 0.85rem auto 0;
+  max-width: 36rem;
+  color: color-mix(in srgb, #fff6ee 92%, transparent);
+  font-size: clamp(1.2rem, 2.4vw, 1.4rem);
+  line-height: 1.5;
+  text-align: center;
+}
+
+.menu-page__hero .nav-text {
+  text-align: center;
+}
+
+.menu-page__hero .menu-page__intro.nav-text {
+  font-size: clamp(1.2rem, 2.4vw, 1.4rem);
+}
+
+.menu-page__content {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 5vw, 3.75rem) var(--spacing) calc(var(--spacing) * 4);
+}
+
+.menu-page__categories {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 5vw, 3.75rem);
+}
+
+.menu-page__category {
+  transform: translateY(22px);
+  transition: transform 0.45s ease;
+}
+
+.menu-page--revealed .menu-page__category {
+  transform: translateY(0);
+}
+
+.menu-page__category-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  margin: 0 0 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid color-mix(in srgb, var(--color-domo-brown) 25%, transparent);
+  flex-wrap: wrap;
+}
+
+.menu-page__category-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
+  color: var(--color-domo-brown);
+  margin: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.menu-page__allergen-key {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.1rem;
+  margin: 0 0 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.menu-page__allergen-key-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.menu-page__allergen-key-label {
+  color: var(--color-domo-brown);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.menu-page__allergen-icon--key {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.menu-page__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.85rem, 2vw, 1.15rem);
+}
+
+.menu-page__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  background: #2b1a18;
+  border: 1px solid color-mix(in srgb, #5a3d36 50%, transparent);
+  border-radius: 0.95rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease,
+    background-color 0.28s ease;
+}
+
+.menu-page__item:hover {
+  transform: translateY(-6px);
+  background: #35201d;
+  border-color: color-mix(in srgb, #c9a27a 55%, transparent);
+  box-shadow:
+    0 16px 32px rgba(0, 0, 0, 0.28),
+    0 0 0 1px color-mix(in srgb, #f5d76e 22%, transparent);
+}
+
+.menu-page__item:hover .menu-page__item-image {
+  transform: scale(1.06);
+}
+
+.menu-page__item:hover .menu-page__item-price {
+  color: #ffe08a;
+}
+
+.menu-page__item-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #1a0c02;
+}
+
+.menu-page__item-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 0.4s ease;
+}
+
+.menu-page__badge {
+  position: absolute;
+  left: 0.65rem;
+  bottom: 0.65rem;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 9999px;
+  background: var(--color-domo-red);
+  color: var(--color-white);
+  font-family: var(--font-nav);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.menu-page__badge--inline {
+  position: static;
+  align-self: flex-start;
+  margin: 0.75rem 0.9rem 0;
+}
+
+.menu-page__allergens {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  gap: 0.28rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu-page__allergen-icon {
+  display: block;
+  width: 1.4rem;
+  height: 1.4rem;
+  object-fit: contain;
+}
+
+.menu-page__allergen-icon--white-bg {
+  padding: 0.12rem;
+  background: #ffffff;
+  border-radius: 9999px;
+  box-sizing: content-box;
+}
+
+.menu-page__item-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.35rem;
+  padding: 0.75rem 0.85rem 0.85rem;
+  text-align: left;
+  min-height: 0;
+}
+
+.menu-page__item-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  font-weight: 400;
+  color: #fff6ee;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.menu-page__item-desc {
+  margin: 0;
+  flex: 1;
+  color: color-mix(in srgb, #fff6ee 70%, transparent);
+  line-height: 1.35;
+  font-size: 0.88rem;
+  text-align: left;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+.menu-page__item-body .nav-text {
+  text-align: left;
+}
+
+.menu-page__item-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: auto;
+  min-height: 1.85rem;
+}
+
+.menu-page__item-price {
+  margin: 0;
+  color: #f5d76e;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.4vw, 1.65rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-align: left;
+}
+
+@media (max-width: 720px) {
+  .menu-page__hero,
+  .menu-page--revealed .menu-page__hero {
+    transform: none;
+    min-height: 58svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Top pad = nav clearance only; center within the rest of the hero */
+    padding-top: 4.75rem;
+    padding-bottom: 2.5rem;
+    background-position: center top;
+  }
+
+  .menu-page__items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  .menu-page__item-price {
+    font-size: 1rem;
+  }
+
+  .menu-page__item-footer {
+    justify-content: space-between;
+    align-items: center;
+    min-height: 0;
+  }
+
+  .menu-page__allergen-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .menu-page__allergen-icon--key {
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+
+  .menu-page__allergen-icon--white-bg {
+    padding: 0.08rem;
+  }
+
+  .menu-page__allergens {
+    gap: 0.18rem;
+    align-items: center;
+  }
+
+  .menu-page__allergen-key {
+    justify-content: flex-start;
+    margin: 0;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-page__hero,
+  .menu-page__category,
+  .menu-page__item,
+  .menu-page__item-image {
+    transform: none;
+    transition: none;
+  }
+
+  .menu-page__item:hover {
+    transform: none;
+  }
+
+  .menu-page__item:hover .menu-page__item-image {
+    transform: none;
+  }
+}

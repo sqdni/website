@@ -1,0 +1,72 @@
+.awning {
+  position: relative;
+  width: 100%;
+  height: clamp(8.25rem, 16vw, 12rem);
+  line-height: 0;
+  overflow: visible;
+}
+
+.awning--no-logo {
+  height: calc(clamp(3.75rem, 7.5vw, 5.5rem) + 40px);
+  overflow: hidden;
+}
+
+.awning__shape {
+  position: absolute;
+  inset: 0;
+  filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.1));
+}
+
+.awning__outline,
+.awning__stripes {
+  --awning-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 26' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0 0h120v20Q115 24.5 110 20T100 20T90 20T80 20T70 20T60 20T50 20T40 20T30 20T20 20T10 20T0 20Z'/%3E%3C/svg%3E");
+  position: absolute;
+  -webkit-mask-image: var(--awning-mask);
+  mask-image: var(--awning-mask);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.awning__outline {
+  inset: 0;
+  background: #ffffff;
+}
+
+.awning__stripes {
+  --stripe-width: clamp(0.963rem, 2.35125vw, 1.92375rem);
+  inset: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-domo-red) 0,
+    var(--color-domo-red) var(--stripe-width),
+    var(--color-white) var(--stripe-width),
+    var(--color-white) calc(var(--stripe-width) * 2)
+  );
+}
+
+.awning__logo {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  height: clamp(5.75rem, 12.9375vw, 8.984375rem);
+  width: auto;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.12));
+  pointer-events: none;
+}
+
+.awning--no-logo .awning__shape {
+  /* Flush top edge to the screen; scallop only on the bottom */
+  inset: 0;
+}
+
+@media (max-width: 720px) {
+  /* Fewer, wider scallops on the About values banner */
+  .values .awning__outline,
+  .values .awning__stripes {
+    --awning-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 26' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0 0h120v20Q108 25 96 20T72 20T48 20T24 20T0 20Z'/%3E%3C/svg%3E");
+  }
+}

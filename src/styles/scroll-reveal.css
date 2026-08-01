@@ -1,0 +1,44 @@
+@media (prefers-reduced-motion: reduce) {
+  .events__heading,
+  .events__card-wrap,
+  .events__carousel-nav,
+  .visit__card,
+  .visit__title,
+  .visit__location,
+  .visit__phone,
+  .visit__hours,
+  .visit__cta,
+  .hero__mascots,
+  .hero__tagline,
+  .hero__title,
+  .hero__address,
+  .hero__social,
+  .rewards-v11-hero__eyebrow,
+  .rewards-v11-hero__title,
+  .rewards-v11-hero__tagline,
+  .rewards-v11-hero__actions,
+  .rewards-v11-hero__domo,
+  .rewards__widget-heading,
+  .rewards__widget-description,
+  .rewards__hero .rewards__widget-copy > .rewards__cta,
+  .rewards__mascot-wrap,
+  .rewards__whoriddle-eyebrow,
+  .rewards__whoriddle-title,
+  .rewards__whoriddle-description,
+  .rewards__store-buttons,
+  .rewards__whoriddle-footnote,
+  .rewards__screenshot-wrap,
+  .rewards__how-to-title,
+  .rewards__how-to-subtitle,
+  .rewards__how-to-step,
+  .rewards__app-preview-title,
+  .rewards__app-preview-item {
+    transform: none;
+    transition: none;
+  }
+
+  .rewards-v11-hero__domo {
+    transform: translate(-50%, 0);
+    transition: none;
+  }
+}
