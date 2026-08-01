@@ -1,18 +1,15 @@
-.layout:has(.home) .navbar-wrap,
-.layout:has(.about) .navbar-wrap,
-.layout:has(.menu-page) .navbar-wrap,
-.layout:has(.rewards) .navbar-wrap {
+.navbar-wrap {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-}
-
-.navbar-wrap {
   display: flex;
   justify-content: center;
   padding: var(--spacing) var(--spacing) 0;
+  /* Keep out of document flow so heroes sit flush to the top */
+  height: 0;
+  overflow: visible;
 }
 
 .navbar {

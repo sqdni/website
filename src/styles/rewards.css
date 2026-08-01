@@ -374,6 +374,13 @@
 @media (max-width: 720px) {
   .rewards-v11-hero {
     height: 62svh;
+    min-height: 62svh;
+  }
+
+  .rewards-v11-hero__media,
+  .rewards-v11-hero__image,
+  .rewards-v11-hero__overlay {
+    top: 0;
   }
 
   .rewards-v11-hero__image {

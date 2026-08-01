@@ -284,7 +284,15 @@
 
 @media (max-width: 720px) {
   .hero {
-    height: 100svh;
+    height: 100dvh;
+    min-height: 100svh;
+  }
+
+  .hero__slides,
+  .hero__slide,
+  .hero__slide-image,
+  .hero__overlay {
+    top: 0;
   }
 
   .hero__slide-image {
