@@ -243,7 +243,7 @@
 
 .careers__role-tags {
   margin: 0.35rem 0 0;
-  color: color-mix(in srgb, var(--color-domo-brown) 72%, transparent);
+  color: #5a3426;
 }
 
 @media (max-width: 720px) {
@@ -390,8 +390,8 @@
 
 .contact__field input:focus,
 .contact__field textarea:focus {
-  outline: 2px solid color-mix(in srgb, var(--color-domo-brown) 40%, transparent);
-  outline-offset: 1px;
+  outline: 3px solid #261903;
+  outline-offset: 2px;
 }
 
 .contact__thanks {

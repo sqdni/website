@@ -30,7 +30,7 @@ const socialLinks = [
   {
     id: 'tiktok',
     label: 'TikTok',
-    href: 'https://x.com/domokuncafe',
+    href: 'https://www.tiktok.com/@domokuncafe',
     className: 'hero__social-btn--tiktok',
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true">

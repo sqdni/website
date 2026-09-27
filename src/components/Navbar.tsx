@@ -150,15 +150,27 @@ function NavDropdown({
 export function Navbar() {
   const { pathname } = useLocation()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const navListId = useId()
 
   useEffect(() => {
     setMobileOpen(false)
   }, [pathname])
 
+  useEffect(() => {
+    if (!mobileOpen) return
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMobileOpen(false)
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [mobileOpen])
+
   return (
     <header className={`navbar-wrap${mobileOpen ? ' navbar-wrap--open' : ''}`}>
       <nav className="navbar" aria-label="Main">
-        <ul className="navbar__items">
+        <ul id={navListId} className="navbar__items">
           <li className="navbar__item">
             <Link
               to="/"
@@ -207,6 +219,7 @@ export function Navbar() {
           type="button"
           className="navbar__mobile-toggle"
           aria-expanded={mobileOpen}
+          aria-controls={navListId}
           aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
           onClick={() => setMobileOpen((current) => !current)}
         >

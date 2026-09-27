@@ -64,9 +64,9 @@ export function ValuesSection() {
       <div className="values__inner">
         <header className="values__header">
           <p className="values__eyebrow nav-text">Our Story</p>
-          <h2 id="values-heading" className="values__heading nav-text nav-text--sentence">
+          <h1 id="values-heading" className="values__heading nav-text nav-text--sentence">
             We are not just a cafe.
-          </h2>
+          </h1>
           <p className="values__subhead">
             We are an experience worth remembering.
           </p>

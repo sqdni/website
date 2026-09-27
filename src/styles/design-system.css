@@ -1,8 +1,8 @@
 /**
- * Design system — typography tokens and base text styles.
+ * Domo Cafe design system — brand tokens used across the site.
  *
- * Display: Darumadrop One   → titles, headings
- * Body:    Hubballi         → paragraphs, UI copy, footer, nav-text
+ * Display: Darumadrop One   → titles, headings, prices
+ * Body:    Hubballi         → paragraphs, nav, UI copy, footer
  */
 
 :root {
@@ -19,16 +19,47 @@
   --text-body: 16px;
   --text-body-sm: 16px;
   --text-caption: 16px;
+  --text-nav: 15px;
+  --text-eyebrow: 13px;
 
   /* Line heights */
   --leading-display: 1.15;
   --leading-body: 1.6;
 
-  /* Brand colors (reserved for future use) */
+  /* Core brand */
   --color-domo-brown: #7d4d38;
   --color-domo-red: #c22f2f;
   --color-white: #ffffff;
   --color-black: #000000;
+
+  /* Surfaces & text */
+  --color-bg: #ffefdb;
+  --color-surface: #ffffff;
+  --color-cream: #fff6ee;
+  --color-ink: #261903;
+  --color-text: #1a1a1a;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
+
+  /* Supporting accents (used in UI states / sections) */
+  --color-brown-deep: #4d3024;
+  --color-brown-dark: #5a3426;
+  --color-brown-mid: #8b5a3c;
+  --color-red-hover: #a82828;
+  --color-gold: #f5d76e;
+  --color-tan: #db9f63;
+  --color-tan-deep: #ba7e44;
+
+  /* Layout */
+  --max-width: 72rem;
+  --spacing: 1.5rem;
+  --radius-pill: 9999px;
+  --radius-card: 1rem;
+  --radius-control: 0.75rem;
+
+  /* Breakpoints (documented; media queries still use raw px) */
+  --bp-phone: 720px;
+  --bp-tablet-max: 1100px;
 }
 
 /* Body text defaults */

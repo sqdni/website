@@ -118,7 +118,7 @@
 
 .rewards__cta:hover {
   transform: translateY(-4px);
-  background: #966347;
+  background: #5a3426;
   color: var(--color-white);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32);
 }
@@ -481,10 +481,10 @@
 }
 
 .rewards__whoriddle-title-accent {
-  background: var(--rewards-whoriddle-tan-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  color: var(--color-domo-brown);
 }
 
 .rewards__whoriddle-description {
@@ -539,7 +539,7 @@
 }
 
 .rewards__store-btn--google {
-  background: var(--rewards-whoriddle-tan-gradient);
+  background: #8b5a3c;
 }
 
 .rewards__store-icon {
@@ -566,7 +566,8 @@
   font-weight: 400;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  opacity: 0.88;
+  color: #fff6ee;
+  opacity: 1;
 }
 
 .rewards__store-btn-name {
@@ -652,9 +653,6 @@
   }
 
   .rewards__whoriddle-title-accent {
-    background: none;
-    -webkit-background-clip: unset;
-    background-clip: unset;
     color: inherit;
   }
 

@@ -77,7 +77,11 @@ export function ContactSection() {
             </span>
           </button>
           {submitted ? (
-            <p className="contact__thanks nav-text nav-text--sentence">
+            <p
+              className="contact__thanks nav-text nav-text--sentence"
+              role="status"
+              aria-live="polite"
+            >
               Thanks! This form is a preview — email us at info@domokuncafe.com for now.
             </p>
           ) : null}

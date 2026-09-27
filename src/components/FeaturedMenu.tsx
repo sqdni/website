@@ -7,8 +7,15 @@ import '../styles/featured-menu.css'
 const AUTO_CYCLE_MS = 4000
 const SWIPE_THRESHOLD_PX = 40
 
+function prefersReducedMotion() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
 export function FeaturedMenu() {
   const [index, setIndex] = useState(0)
+  const [autoplay, setAutoplay] = useState(() =>
+    typeof window !== 'undefined' ? !prefersReducedMotion() : true,
+  )
   const swipeStartX = useRef<number | null>(null)
   const { ref, isVisible } = useScrollReveal<HTMLElement>({
     threshold: 0.2,
@@ -20,19 +27,33 @@ export function FeaturedMenu() {
   const total = FEATURED_MENU_ITEMS.length
 
   useEffect(() => {
-    if (total <= 1) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const sync = () => {
+      if (media.matches) setAutoplay(false)
+    }
+    sync()
+    media.addEventListener('change', sync)
+    return () => media.removeEventListener('change', sync)
+  }, [])
+
+  useEffect(() => {
+    if (total <= 1 || !autoplay) return
 
     const timer = window.setInterval(() => {
       setIndex((current) => (current + 1) % total)
     }, AUTO_CYCLE_MS)
 
     return () => window.clearInterval(timer)
-  }, [total, index])
+  }, [total, index, autoplay])
 
-  const goPrev = () =>
+  const goPrev = () => {
+    setAutoplay(false)
     setIndex((current) => (current - 1 + total) % total)
-  const goNext = () => setIndex((current) => (current + 1) % total)
+  }
+  const goNext = () => {
+    setAutoplay(false)
+    setIndex((current) => (current + 1) % total)
+  }
 
   const onSwipeStart = (clientX: number) => {
     swipeStartX.current = clientX
@@ -52,6 +73,8 @@ export function FeaturedMenu() {
       ref={ref}
       className={`featured-menu${isVisible ? ' featured-menu--revealed' : ''}`}
       aria-labelledby="featured-menu-heading"
+      onMouseEnter={() => setAutoplay(false)}
+      onFocusCapture={() => setAutoplay(false)}
     >
       <div className="featured-menu__inner">
         <header className="featured-menu__header">
@@ -152,18 +175,20 @@ export function FeaturedMenu() {
           </button>
         </div>
 
-        <div className="featured-menu__dots" role="tablist" aria-label="Featured dishes">
+        <div className="featured-menu__dots" role="group" aria-label="Featured dishes">
           {FEATURED_MENU_ITEMS.map((item, itemIndex) => (
             <button
               key={item.id}
               type="button"
-              role="tab"
               className={`featured-menu__dot${
                 itemIndex === index ? ' featured-menu__dot--active' : ''
               }`}
-              aria-selected={itemIndex === index}
-              aria-label={`${item.name}${itemIndex === index ? ' (current)' : ''}`}
-              onClick={() => setIndex(itemIndex)}
+              aria-current={itemIndex === index ? 'true' : undefined}
+              aria-label={`Show ${item.name}`}
+              onClick={() => {
+                setAutoplay(false)
+                setIndex(itemIndex)
+              }}
             />
           ))}
         </div>

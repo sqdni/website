@@ -9,8 +9,13 @@ type LayoutProps = {
 export function Layout({ children }: LayoutProps) {
   return (
     <div className="layout">
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
       <Navbar />
-      <main className="layout__main">{children}</main>
+      <main id="main-content" className="layout__main" tabIndex={-1}>
+        {children}
+      </main>
       <SiteFooter />
     </div>
   )

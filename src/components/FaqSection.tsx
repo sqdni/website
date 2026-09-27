@@ -86,6 +86,8 @@ export function FaqSection() {
                   type="button"
                   className="faq__question"
                   aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${index}`}
+                  id={`faq-question-${index}`}
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                 >
                   <span className="faq__question-text">{faq.question}</span>
@@ -95,7 +97,12 @@ export function FaqSection() {
                   </span>
                 </button>
                 {isOpen ? (
-                  <div className="faq__answer">
+                  <div
+                    className="faq__answer"
+                    id={`faq-answer-${index}`}
+                    role="region"
+                    aria-labelledby={`faq-question-${index}`}
+                  >
                     {faq.answer.split('\n\n').map((paragraph) => (
                       <p key={paragraph.slice(0, 24)}>{paragraph}</p>
                     ))}

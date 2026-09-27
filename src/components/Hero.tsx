@@ -22,9 +22,16 @@ const mascotSlides = [
   mascotJumping,
 ] as const
 
+function prefersReducedMotion() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
 export function Hero() {
   const [heroIndex, setHeroIndex] = useState(0)
   const [mascotIndex, setMascotIndex] = useState(0)
+  const [motionOk, setMotionOk] = useState(() =>
+    typeof window !== 'undefined' ? !prefersReducedMotion() : true,
+  )
   const { ref, isVisible } = useScrollReveal<HTMLElement>({
     threshold: [0, 0.1, 0.25],
     delayMs: 400,
@@ -33,14 +40,26 @@ export function Hero() {
   })
 
   useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const sync = () => setMotionOk(!media.matches)
+    sync()
+    media.addEventListener('change', sync)
+    return () => media.removeEventListener('change', sync)
+  }, [])
+
+  useEffect(() => {
+    if (!motionOk) return
+
     const timer = window.setInterval(() => {
       setHeroIndex((current) => (current + 1) % heroSlides.length)
     }, HERO_INTERVAL_MS)
 
     return () => window.clearInterval(timer)
-  }, [])
+  }, [motionOk])
 
   useEffect(() => {
+    if (!motionOk) return
+
     let mascotTimer: number | undefined
 
     const startTimer = window.setTimeout(() => {
@@ -56,7 +75,7 @@ export function Hero() {
         window.clearInterval(mascotTimer)
       }
     }
-  }, [])
+  }, [motionOk])
 
   return (
     <section
@@ -102,7 +121,8 @@ export function Hero() {
             </p>
 
             <p className="hero__address nav-text nav-text--sentence">
-              📍 8340 La Palma Ave, Buena Park, CA 90620
+              <span aria-hidden="true">📍 </span>
+              8340 La Palma Ave, Buena Park, CA 90620
             </p>
           </div>
 

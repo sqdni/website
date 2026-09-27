@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { DocumentTitle } from './components/DocumentTitle'
 import { Layout } from './components/Layout'
 import { ScrollToTop } from './components/ScrollToTop'
 import { About } from './pages/About'
@@ -10,6 +11,7 @@ import './styles/global.css'
 function App() {
   return (
     <BrowserRouter>
+      <DocumentTitle />
       <ScrollToTop />
       <Layout>
         <Routes>

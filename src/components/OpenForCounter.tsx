@@ -28,9 +28,13 @@ export function OpenForCounter() {
   const [duration, setDuration] = useState(() => getOpenDuration(new Date()))
 
   useEffect(() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    // Tick once a minute under reduced motion; every second otherwise.
+    const intervalMs = reduced ? 60_000 : 1000
+
     const timer = window.setInterval(() => {
       setDuration(getOpenDuration(new Date()))
-    }, 1000)
+    }, intervalMs)
     return () => window.clearInterval(timer)
   }, [])
 

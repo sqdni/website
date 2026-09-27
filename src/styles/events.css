@@ -36,7 +36,7 @@
 
 .events__cta:hover {
   transform: translateY(-4px);
-  background: #eb4242;
+  background: #a82828;
   color: var(--color-white);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.28);
 }
@@ -165,7 +165,7 @@
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1;
-  color: color-mix(in srgb, #fff6ee 40%, transparent);
+  color: color-mix(in srgb, #fff6ee 72%, transparent);
 }
 
 .hero__open-for-cell {
